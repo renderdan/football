@@ -20,6 +20,7 @@
 from importseasons import ImportSeasons
 from season import Season
 from team import Team
+from os.path import expanduser
 
 def getLeagueFromSeasons(seasons_list, league):
     Premiership = [x for x in seasons_list if x.isLeague(league)]
@@ -60,12 +61,13 @@ def main():
 
     '''
     In a terminal, do
-      grip /Users/renderdan/Documents/table.md
+      grip ~/PycharmProjects/football/football/table.md
     Open safari at
       http://localhost:6419
     '''
 
-    path = '/Users/renderdan/Documents/table.md'
+    home = expanduser("~")
+    path = '{0}/PycharmProjects/football/football/table.md'.format(home)
     with open(path, 'w') as f:
         f.write('| team | wins | draws | losses | points |\n')
         f.write('|---|---:|---:|---:|---:|\n')
