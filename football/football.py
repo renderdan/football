@@ -20,7 +20,7 @@
 from importseasons import ImportSeasons
 from season import Season
 from team import Team
-from os.path import expanduser
+from exportstandings import ExportStandings
 
 def getLeagueFromSeasons(seasons_list, league):
     Premiership = [x for x in seasons_list if x.isLeague(league)]
@@ -45,12 +45,12 @@ def main():
         new_team = Team(team)
         teams_list.append(new_team)
 
-    PremiershipTeamNames = [x.getTeamAttr('name') for x in teams_list]
-    PremiershipTeamShortNames = [x.getTeamAttr('shortName') for x in teams_list]
-    PremiershipTeamSquadMarketValues = [x.getTeamAttr('squadMarketValue') for x in teams_list]
-    table = zip(PremiershipTeamNames, PremiershipTeamShortNames, PremiershipTeamSquadMarketValues)
-    for row in table:
-        print row
+    #PremiershipTeamNames = [x.getTeamAttr('name') for x in teams_list]
+    #PremiershipTeamShortNames = [x.getTeamAttr('shortName') for x in teams_list]
+    #PremiershipTeamSquadMarketValues = [x.getTeamAttr('squadMarketValue') for x in teams_list]
+    #table = zip(PremiershipTeamNames, PremiershipTeamShortNames, PremiershipTeamSquadMarketValues)
+    #for row in table:
+    #    print row
 
     leagueTableUrl = pl.getLinksUrl('leagueTable')
     premiershipTable = i.importurlfromrest(leagueTableUrl)
@@ -59,21 +59,8 @@ def main():
     standings = premiershipTable['standing']
     standings.sort(key=lambda x: x['points'], reverse=True)
 
-    '''
-    In a terminal, do
-      grip ~/PycharmProjects/football/football/table.md
-    Open safari at
-      http://localhost:6419
-    '''
-
-    home = expanduser("~")
-    path = '{0}/PycharmProjects/football/football/table.md'.format(home)
-    with open(path, 'w') as f:
-        f.write('| team | wins | draws | losses | points |\n')
-        f.write('|---|---:|---:|---:|---:|\n')
-        for j in standings:
-            f.write('| {0} | {1} | {2} | {3} | {4} |\n'.format(j['teamName'], j['wins'], j['draws'], j['losses'], j['points']))
-        f.close()
+    exportstandings = ExportStandings()
+    exportstandings.write(standings)
 
 if __name__ == "__main__":
     main()

@@ -2,7 +2,7 @@ from response import Response
 
 class Team(Response):
     '''
-    This class holds season data for one league
+    This class holds team data for one league
     '''
 
     def getTeamAttr(self, attr):
