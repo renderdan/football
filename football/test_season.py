@@ -25,17 +25,6 @@ class TestSeason(TestCase):
             print i, s
         pass
 
-    def test_parse_links(self):
-        s = Season(testdata[0])
-        links_obj = s.parse_links(testdata[0]['_links'])
-        self.assertFalse(links_obj=={}) # must return a valid object
-        self.assertEqual(links_obj,s._response['_links'])
-        for link in links_obj:
-            self.assertIn(link,expected_links) # fixed set of expected links
-            self.assertTrue(links_obj[link]) # cannot have empty string for link url
-            print '{0} : {1}'.format(link,links_obj[link])
-        pass
-
     def test_is_premier_league(self):
         s = Season(testdata[4])
         self.assertTrue(s.isLeague('Premier League'))
