@@ -1,15 +1,14 @@
 from unittest import TestCase
-from importseasons import ImportSeasons
+from importdata import Import
 
-class TestImportseasons(TestCase):
-    def test_importseasons_constructs(self):
-        i = ImportSeasons()
-        self.assertIsInstance(i, ImportSeasons)
-        self.assertEqual(i.seasons_list,[])
+class TestImportData(TestCase):
+    def test_importdata_constructs(self):
+        i = Import()
+        self.assertIsInstance(i, Import)
         pass
 
-    def test_importseasons_importurlfromrest(self):
-        i = ImportSeasons()
+    def test_importdata_importurlfromrest(self):
+        i = Import()
         results = i.importurlfromrest('http://api.football-data.org/v1/soccerseasons/?season=2015')
         self.assertIsNotNone(results)
         self.assertGreater(len(results),0)

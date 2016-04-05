@@ -2,7 +2,6 @@
 
 import requests
 import json
-import ast
 
 '''
 This is some documentation
@@ -10,9 +9,9 @@ http://api.football-data.org/documentation
 curl -H 'X-Response-Control: minified' -X GET http://api.football-data.org/v1/soccerseasons/?season=2015
 '''
 
-class ImportSeasons:
+class Import:
     def __init__(self):
-        self.seasons_list = []
+        self.response = []
 
     def importurlfromrest(self, url):
         '''

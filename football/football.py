@@ -17,7 +17,7 @@
     goalsAgainst : 31
 '''
 
-from importseasons import ImportSeasons
+from importdata import Import
 from season import Season
 from team import Team
 from exportstandings import ExportStandings
@@ -26,31 +26,30 @@ def getLeagueFromSeasons(seasons_list, league):
     Premiership = [x for x in seasons_list if x.isLeague(league)]
     return Premiership[0]
 
-def main():
+def populateSeasons():
     seasons_list = []
-    teams_list = []
-
-    i = ImportSeasons()
+    i = Import()
     for s in i.importurlfromrest('http://api.football-data.org/v1/soccerseasons/?season=2015'):
         print s
         new_season = Season(s)
         seasons_list.append(new_season)
+    return seasons_list
 
-    pl = getLeagueFromSeasons(seasons_list, 'Premier League')
 
+def initializeTeams():
+    teams_list = []
     teamsUrl = pl.getLinksUrl('teams')
     print 'teamsUrl=',teamsUrl
     teamsResponse = i.importurlfromrest(teamsUrl)
     for team in teamsResponse['teams']:
         new_team = Team(team)
         teams_list.append(new_team)
+    return teams_list
 
-    #PremiershipTeamNames = [x.getTeamAttr('name') for x in teams_list]
-    #PremiershipTeamShortNames = [x.getTeamAttr('shortName') for x in teams_list]
-    #PremiershipTeamSquadMarketValues = [x.getTeamAttr('squadMarketValue') for x in teams_list]
-    #table = zip(PremiershipTeamNames, PremiershipTeamShortNames, PremiershipTeamSquadMarketValues)
-    #for row in table:
-    #    print row
+def main():
+    seasons_list = populateSeasons()
+    pl = getLeagueFromSeasons(seasons_list, 'Premier League')
+    teams_list = initializeTeams()
 
     leagueTableUrl = pl.getLinksUrl('leagueTable')
     premiershipTable = i.importurlfromrest(leagueTableUrl)
