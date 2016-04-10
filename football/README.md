@@ -34,3 +34,5 @@ And open a browser at [http://localhost:6419](http://localhost:6419)
 [Grip is available from here](https://github.com/joeyespo/grip)
 
 Then run the script and the table.md file should populate in the browser.
+
+Sample output [here](table.md)
