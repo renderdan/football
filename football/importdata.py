@@ -10,7 +10,7 @@ curl -H 'X-Response-Control: minified' -X GET http://api.football-data.org/v1/so
 '''
 
 class Import:
-    def __init__(self):
+    def __init__(self, token):
         self.response = []
 
     def importurlfromrest(self, url):
@@ -19,7 +19,7 @@ class Import:
         :return: JSON response object
         '''
         headers = {
-            'X-Auth-Token': '38762f684dfb41f99dbb0fc3b9f7e70b'
+            'X-Auth-Token': token
            }
         response = requests.get(url,headers=headers)
         self.response = json.loads(response.content)
