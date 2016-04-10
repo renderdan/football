@@ -321,8 +321,8 @@
 | AFC Bournemouth | Aston Villa FC | 2016-04-09T14:00:00Z | 2 | 1 |
 | West Bromwich Albion FC | Manchester City FC | 2016-04-09T16:30:00Z | 1 | 2 |
 | Leicester City FC | Sunderland AFC | 2016-04-10T12:30:00Z | 2 | 0 |
-| Manchester United FC | Tottenham Hotspur FC | 2016-04-10T15:00:00Z | None | None |
-| Stoke City FC | Liverpool FC | 2016-04-10T15:00:00Z | None | None |
+| Manchester United FC | Tottenham Hotspur FC | 2016-04-10T15:00:00Z | 0 | 3 |
+| Stoke City FC | Liverpool FC | 2016-04-10T15:00:00Z | 1 | 4 |
 | Everton FC | Crystal Palace FC | 2016-04-13T19:00:00Z | None | None |
 | Sunderland AFC | Norwich City FC | 2016-04-16T11:45:00Z | None | None |
 | Watford FC | West Bromwich Albion FC | 2016-04-16T14:00:00Z | None | None |

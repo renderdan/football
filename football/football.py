@@ -22,6 +22,7 @@ from season import Season
 from team import Team
 from response import Response
 from exportstandings import ExportStandings
+from os.path import expanduser
 
 class Football:
     def __init__(self, token):
@@ -29,16 +30,16 @@ class Football:
         self.token = token
 
 
-    def dump_league_names(label, attr, list):
+    def dump_league_names(self, label, attr, list):
         print label
         for leagueName in [x._response[attr] for x in list]:
             print '"',leagueName,'"'
 
-    def getLeagueFromSeasons(seasons_list, league):
+    def getLeagueFromSeasons(self, seasons_list, league):
         Premiership = [x for x in seasons_list if x.isLeague(league)]
         return Premiership[0]
 
-    def initializeSeasons(i):
+    def initializeSeasons(self, i):
         seasons_list = []
         for s in i.importurlfromrest('http://api.football-data.org/v1/soccerseasons/?season=2015'):
             print s
@@ -47,7 +48,7 @@ class Football:
         return seasons_list
 
 
-    def initializeTeams(i, league):
+    def initializeTeams(self, i, league):
         teams_list = []
         teamsUrl = league.getLinksUrl('teams')
         print 'teamsUrl=',teamsUrl
@@ -58,7 +59,7 @@ class Football:
         return teams_list
 
 
-    def initializeFixtures(i, league):
+    def initializeFixtures(self, i, league):
         fixtures_list = []
         url = league.getLinksUrl('fixtures')
         print 'fixturesUrl=',url
@@ -69,13 +70,13 @@ class Football:
         return fixtures_list
 
 
-    def getStandings(i, league):
+    def getStandings(self, i, league, sort_by):
         leagueTableUrl = league.getLinksUrl('leagueTable')
         premiershipTable = i.importurlfromrest(leagueTableUrl)
         print 'premiershipTable length(',len(premiershipTable),') : ',premiershipTable
         print len(premiershipTable['standing'])
         standings = premiershipTable['standing']
-        standings.sort(key=lambda x: x['points'], reverse=True)
+        standings.sort(key=lambda x: x[sort_by], reverse=True)
         return standings
 
 
@@ -86,15 +87,20 @@ def main():
     Open browser at
       http://localhost:6419
     '''
-    token = '38762f684dfb41f99dbb0fc3b9f7e70b'
+    token = None
+    token_path = '{0}{1}'.format(expanduser("~"),'/PycharmProjects/football/football/auth_token.txt')
+    with open(token_path, 'r') as f:
+        token = f.read().rstrip()
+
+    league_names = ['Premier League', 'League One', 'Champions League', '1. Bundesliga', '2. Bundesliga']
     football = Football(token)
     i = Import(football.token)
     seasons_list = football.initializeSeasons(i)
     football.dump_league_names('League Names : ', 'caption', seasons_list)
-    pl = football.getLeagueFromSeasons(seasons_list, 'Premier League') # 2. Bundesliga
+    pl = football.getLeagueFromSeasons(seasons_list, league_names[0])
     teams = football.initializeTeams(i, pl)
     fixtures = football.initializeFixtures(i, pl)
-    standings = football.getStandings(i, pl)
+    standings = football.getStandings(i, pl, sort_by='points')
 
     ExportStandings('/PycharmProjects/football/football/table.md').writeStandings(standings)
     ExportStandings('/PycharmProjects/football/football/fixtures.md').writeFixtures(fixtures)

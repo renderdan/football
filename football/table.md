@@ -1,14 +1,14 @@
 | team | wins | draws | losses | points |
 |---|---:|---:|---:|---:|
 | Leicester City FC | 21 | 9 | 3 | 72 |
-| Tottenham Hotspur FC | 17 | 11 | 4 | 62 |
+| Tottenham Hotspur FC | 18 | 11 | 4 | 65 |
 | Arsenal FC | 17 | 8 | 7 | 59 |
 | Manchester City FC | 17 | 6 | 9 | 57 |
-| Manchester United FC | 15 | 8 | 8 | 53 |
+| Manchester United FC | 15 | 8 | 9 | 53 |
 | West Ham United FC | 13 | 13 | 6 | 52 |
 | Southampton FC | 14 | 8 | 11 | 50 |
-| Stoke City FC | 13 | 8 | 11 | 47 |
-| Liverpool FC | 12 | 9 | 9 | 45 |
+| Liverpool FC | 13 | 9 | 9 | 48 |
+| Stoke City FC | 13 | 8 | 12 | 47 |
 | Chelsea FC | 11 | 11 | 10 | 44 |
 | AFC Bournemouth | 11 | 8 | 14 | 41 |
 | Swansea City FC | 10 | 10 | 13 | 40 |
