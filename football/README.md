@@ -5,6 +5,8 @@ This repo is for exploring the football results dataset available from
 | http://api.football-data.org/code_samples |
 |---|
 
+## Requirements 
+
 This repo assumes an install / working directory at
 
 ```
@@ -19,6 +21,8 @@ with an file containing an authentication token [available here](http://api.foot
 
 Eventually this will be deprecated and replaced by a football module api which the auth token can be passed to instead.
 
+## Runtime setup
+
 In a terminal, do
 ```
  $ grip ~/PycharmProjects/football/football/table.md
@@ -28,3 +32,5 @@ And open a browser at [http://localhost:6419](http://localhost:6419)
 
 ### Grip
 [Grip is available from here](https://github.com/joeyespo/grip)
+
+Then run the script and the table.md file should populate in the browser.
